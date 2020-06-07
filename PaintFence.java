@@ -7,22 +7,18 @@ public class PaintFence {
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
 		int n = scn.nextInt();
-		int k = scn.nextInt();
-		
-		int same[] = new int[n+1];
-		int diff[] = new int[n+1];
-		int tot[] = new int[n+1];
-		
-		diff[1] = k;
-		tot[1]=k;		
-		
-		for(int i=2;i<=n;i++) {			
-			same[i] = diff[i-1];
-			diff[i] = tot[i-1]*(k-1);
-			tot[i] = same[i]+diff[i];			
-		}
-		
-		System.out.println(tot[n]);	
+		int k = scn.nextInt();		
+		System.out.println(paintFence(n,k));
 		scn.close();
+	}
+	public static int paintFence(int n,int k) {
+		int dp[][] = new int[2][n];
+		dp[0][0] = 0;
+		dp[1][0] = k;
+		for(int i=1;i<n;i++) {
+			dp[0][i] = dp[1][i-1];
+			dp[1][i] = (dp[0][i-1]+dp[1][i-1])*(k-1);
+		}
+		return dp[0][n-1]+dp[1][n-1];
 	}
 }

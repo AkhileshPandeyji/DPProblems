@@ -1,7 +1,7 @@
 package dynamicProgCodes;
 import java.util.Scanner;
 
-public class TilingProblem {
+public class TilingProblem1XN {
 
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
